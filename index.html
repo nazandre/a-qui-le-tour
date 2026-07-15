@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Qui Le Tour - Wheel Spinner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>À Qui Le Tour</h1>
+        
+        <div class="controls">
+            <div class="input-group">
+                <input type="text" id="nameInput" placeholder="Enter a name">
+                <button onclick="addName()">Add Name</button>
+            </div>
+            
+            <div class="names-list">
+                <h3>Names:</h3>
+                <div id="namesList"></div>
+            </div>
+        </div>
+
+        <div class="wheel-container">
+            <canvas id="wheelCanvas" width="400" height="400"></canvas>
+            <div class="pointer"></div>
+            <button id="spinButton" onclick="spinWheel()">SPIN!</button>
+        </div>
+
+        <div id="resultDisplay" class="result-display hidden">
+            <div class="result-text" id="resultText"></div>
+            <button onclick="resetWheel()">Again?</button>
+        </div>
+
+        <canvas id="fireworksCanvas" class="fireworks-canvas"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
