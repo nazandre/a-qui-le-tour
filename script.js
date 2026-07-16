@@ -4,7 +4,7 @@ let isSpinning = false;
 let currentRotation = 0;
 
 // VERSION - Update this single place on every change
-const VERSION = '1.0.2';
+const VERSION = '1.0.3';
 
 // Palette de couleurs pour les segments de la roue
 const colors = [
