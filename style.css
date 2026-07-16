@@ -9,6 +9,7 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px;
@@ -218,6 +219,14 @@ button:active {
     height: 100%;
     pointer-events: none;
     z-index: 1000;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 10px;
 }
 
 @media (max-width: 480px) {
