@@ -3,6 +3,9 @@ let names = ['Titus', 'Leonitus'];
 let isSpinning = false;
 let currentRotation = 0;
 
+// VERSION - Update this single place on every change
+const VERSION = '1.0.2';
+
 // Palette de couleurs pour les segments de la roue
 const colors = [
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F',
@@ -15,7 +18,16 @@ window.addEventListener('load', () => {
     updateNamesList();
     drawWheel();
     setupFireworks();
+    displayVersion();
 });
+
+// Display version on page
+function displayVersion() {
+    const badge = document.getElementById('versionBadge');
+    if (badge) {
+        badge.textContent = `v${VERSION}`;
+    }
+}
 
 // Gestion du stockage local
 function saveNamesToStorage() {
