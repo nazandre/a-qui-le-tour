@@ -136,8 +136,8 @@ button:active {
     border-left: 30px solid #ff6b6b; /* triangle pointing left */
     position: absolute;
     z-index: 10;
-    right: -6px;               /* moved much closer to the wheel */
-    top: 50%;
+    right: -0px;               /* moved much closer to the wheel */
+    top: 40%;
     transform: translateY(-50%) rotate(-180deg); /* rotated -180deg */
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
