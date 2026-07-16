@@ -150,7 +150,6 @@ function drawWheel() {
     ctx.font = 'bold 20px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('LANCER', centerX, centerY);
 }
 
 // Animation de rotation
