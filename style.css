@@ -134,7 +134,7 @@ button:active {
     border-top: 30px solid #ff6b6b;
     position: absolute;
     z-index: 10;
-    top: 0;
+    top: -30px;
     left: 50%;
     transform: translateX(-50%);
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
