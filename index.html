@@ -28,12 +28,11 @@
         <div class="wheel-container">
             <canvas id="wheelCanvas" width="400" height="400"></canvas>
             <div class="pointer"></div>
-            <button id="spinButton" onclick="spinWheel()">LANCER!</button>
+            <button id="spinButton" onclick="handleSpinClick()">LANCER!</button>
         </div>
 
         <div id="resultDisplay" class="result-display hidden">
             <div class="result-text" id="resultText"></div>
-            <button onclick="resetWheel()">Recommencer?</button>
         </div>
 
         <canvas id="fireworksCanvas" class="fireworks-canvas"></canvas>
