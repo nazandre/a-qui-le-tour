@@ -132,9 +132,11 @@ button:active {
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
     border-top: 30px solid #ff6b6b;
-    position: relative;
+    position: absolute;
     z-index: 10;
-    margin-bottom: 10px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
@@ -143,6 +145,7 @@ button:active {
     height: auto;
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     margin: 20px 0;
+    display: block;
 }
 
 #spinButton {
