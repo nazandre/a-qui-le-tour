@@ -1,15 +1,15 @@
-// Default names
+// Noms par défaut
 let names = ['Titus', 'Leonitus'];
 let isSpinning = false;
 let currentRotation = 0;
 
-// Color palette for wheel segments
+// Palette de couleurs pour les segments de la roue
 const colors = [
     '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F',
     '#BB8FCE', '#85C1E2', '#F8B88B', '#A9DFBF', '#F5B7B1', '#D5A6BD'
 ];
 
-// Initialize
+// Initialisation
 window.addEventListener('load', () => {
     loadNamesFromStorage();
     updateNamesList();
@@ -17,7 +17,7 @@ window.addEventListener('load', () => {
     setupFireworks();
 });
 
-// Local storage management
+// Gestion du stockage local
 function saveNamesToStorage() {
     localStorage.setItem('wheelNames', JSON.stringify(names));
 }
@@ -29,18 +29,18 @@ function loadNamesFromStorage() {
     }
 }
 
-// Name management
+// Gestion des noms
 function addName() {
     const input = document.getElementById('nameInput');
     const name = input.value.trim();
     
     if (!name) {
-        alert('Please enter a name');
+        alert('Veuillez entrer un nom');
         return;
     }
     
     if (names.includes(name)) {
-        alert('This name already exists');
+        alert('Ce nom existe déjà');
         return;
     }
     
@@ -53,7 +53,7 @@ function addName() {
 
 function removeName(index) {
     if (names.length <= 1) {
-        alert('You must have at least one name');
+        alert('Vous devez avoir au moins un nom');
         return;
     }
     names.splice(index, 1);
@@ -72,7 +72,7 @@ function updateNamesList() {
     `).join('');
 }
 
-// Wheel drawing
+// Dessin de la roue
 function drawWheel() {
     const canvas = document.getElementById('wheelCanvas');
     const ctx = canvas.getContext('2d');
@@ -80,22 +80,22 @@ function drawWheel() {
     const centerY = canvas.height / 2;
     const radius = Math.min(centerX, centerY) - 10;
 
-    // Ensure at least 6 segments
+    // Au minimum 6 segments
     let segments = Math.max(6, names.length);
     const anglePerSegment = (Math.PI * 2) / segments;
 
-    // Clear canvas
+    // Effacer le canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw segments
+    // Dessiner les segments
     for (let i = 0; i < segments; i++) {
         const startAngle = i * anglePerSegment + currentRotation;
         const endAngle = (i + 1) * anglePerSegment + currentRotation;
 
-        // Determine which name to show (cycle through names if segments > names)
+        // Déterminer quel nom afficher (cycler à travers les noms si segments > noms)
         const nameIndex = i % names.length;
 
-        // Draw segment
+        // Dessiner le segment
         ctx.beginPath();
         ctx.moveTo(centerX, centerY);
         ctx.arc(centerX, centerY, radius, startAngle, endAngle);
@@ -106,7 +106,7 @@ function drawWheel() {
         ctx.lineWidth = 3;
         ctx.stroke();
 
-        // Draw text
+        // Dessiner le texte
         const textAngle = (startAngle + endAngle) / 2;
         const textRadius = radius * 0.65;
         const textX = centerX + textRadius * Math.cos(textAngle);
@@ -125,7 +125,7 @@ function drawWheel() {
         ctx.restore();
     }
 
-    // Draw center circle
+    // Dessiner le cercle central
     ctx.beginPath();
     ctx.arc(centerX, centerY, 30, 0, Math.PI * 2);
     ctx.fillStyle = 'white';
@@ -138,10 +138,10 @@ function drawWheel() {
     ctx.font = 'bold 20px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('SPIN', centerX, centerY);
+    ctx.fillText('LANCER', centerX, centerY);
 }
 
-// Spin animation
+// Animation de rotation
 function spinWheel() {
     if (isSpinning || names.length === 0) return;
 
@@ -149,20 +149,20 @@ function spinWheel() {
     spinButton.disabled = true;
     isSpinning = true;
 
-    // Hide previous result
+    // Masquer le résultat précédent
     document.getElementById('resultDisplay').classList.add('hidden');
 
-    // Random target rotation (10 full spins + random angle)
+    // Rotation cible aléatoire (10 tours complets + angle aléatoire)
     const spins = 10;
     const randomOffset = Math.random() * Math.PI * 2;
     const targetRotation = currentRotation + (spins * Math.PI * 2) + randomOffset;
 
-    // Animation parameters
-    const spinDuration = 10000; // 10 seconds
+    // Paramètres d'animation
+    const spinDuration = 10000; // 10 secondes
     const startTime = Date.now();
     const startRotation = currentRotation;
 
-    // Easing function (ease-out cubic)
+    // Fonction d'assouplissement (ease-out cubic)
     function easeOutCubic(t) {
         return 1 - Math.pow(1 - t, 3);
     }
@@ -172,7 +172,7 @@ function spinWheel() {
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / spinDuration, 1);
 
-        // Apply easing
+        // Appliquer l'assouplissement
         const easedProgress = easeOutCubic(progress);
         currentRotation = startRotation + (targetRotation - startRotation) * easedProgress;
 
@@ -184,20 +184,20 @@ function spinWheel() {
             isSpinning = false;
             spinButton.disabled = false;
             
-            // Determine winning name
+            // Déterminer le nom gagnant
             const segments = Math.max(6, names.length);
             const anglePerSegment = (Math.PI * 2) / segments;
             
-            // The pointer is at the top (angle 0), so we need to find which segment it's pointing at
+            // Le pointeur est en haut (angle 0), donc on doit trouver quel segment il pointe
             const normalizedRotation = ((currentRotation % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
             const pointerAngle = (Math.PI * 2 - normalizedRotation) % (Math.PI * 2);
             const winningSegment = Math.floor(pointerAngle / anglePerSegment);
             const winningNameIndex = winningSegment % names.length;
 
-            // Show result
+            // Afficher le résultat
             showResult(names[winningNameIndex]);
             
-            // Trigger fireworks
+            // Déclencher les feux d'artifice
             createFireworks();
         }
     }
@@ -219,7 +219,7 @@ function resetWheel() {
     spinButton.disabled = false;
 }
 
-// Fireworks animation
+// Animation des feux d'artifice
 let fireworksContext = null;
 let particles = [];
 
@@ -250,7 +250,7 @@ class Particle {
     update() {
         this.x += this.vx;
         this.y += this.vy;
-        this.vy += 0.2; // gravity
+        this.vy += 0.2; // gravité
         this.life -= this.decay;
     }
 
@@ -294,7 +294,7 @@ function animateFireworks() {
     }
 }
 
-// Allow Enter key to add names
+// Permettre la touche Entrée pour ajouter des noms
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('nameInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
