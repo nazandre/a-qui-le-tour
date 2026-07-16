@@ -141,20 +141,6 @@ function drawWheel() {
     ctx.fillText('LANCER', centerX, centerY);
 }
 
-// Gestion du clic sur le bouton LANCER
-function handleSpinClick() {
-    const resultDisplay = document.getElementById('resultDisplay');
-    
-    // Si un résultat est affiché, le masquer et permettre un nouveau spin
-    if (!resultDisplay.classList.contains('hidden')) {
-        resultDisplay.classList.add('hidden');
-        return;
-    }
-    
-    // Sinon, lancer la roue
-    spinWheel();
-}
-
 // Animation de rotation
 function spinWheel() {
     if (isSpinning || names.length === 0) return;
@@ -307,6 +293,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('nameInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             addName();
+        }
+    });
+    
+    // Setup button handler
+    const spinButton = document.getElementById('spinButton');
+    spinButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        const resultDisplay = document.getElementById('resultDisplay');
+        
+        // Si un résultat est affiché, le masquer et permettre un nouveau spin
+        if (!resultDisplay.classList.contains('hidden')) {
+            resultDisplay.classList.add('hidden');
+        } else {
+            // Sinon, lancer la roue
+            spinWheel();
         }
     });
 });
