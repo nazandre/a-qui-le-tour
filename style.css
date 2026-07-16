@@ -137,7 +137,7 @@ button:active {
     position: absolute;
     z-index: 10;
     right: 5px;               /* moved much closer to the wheel */
-    top: 25%;
+    top: 35%;
     transform: translateY(-50%) rotate(-180deg); /* rotated -180deg */
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
