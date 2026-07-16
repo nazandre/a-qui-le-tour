@@ -125,19 +125,20 @@ button:active {
     align-items: center;
     margin-bottom: 20px;
     position: relative;
+    padding-right: 40px; /* keep space on the right for the pointer */
 }
 
 .pointer {
     width: 0;
     height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-bottom: 30px solid #ff6b6b;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 30px solid #ff6b6b; /* triangle pointing left */
     position: absolute;
     z-index: 10;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: -30px;               /* move to the right side of the wheel */
+    top: 50%;
+    transform: translateY(-50%);
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
