@@ -141,6 +141,20 @@ function drawWheel() {
     ctx.fillText('LANCER', centerX, centerY);
 }
 
+// Gestion du clic sur le bouton LANCER
+function handleSpinClick() {
+    const resultDisplay = document.getElementById('resultDisplay');
+    
+    // Si un résultat est affiché, le masquer et permettre un nouveau spin
+    if (!resultDisplay.classList.contains('hidden')) {
+        resultDisplay.classList.add('hidden');
+        return;
+    }
+    
+    // Sinon, lancer la roue
+    spinWheel();
+}
+
 // Animation de rotation
 function spinWheel() {
     if (isSpinning || names.length === 0) return;
@@ -211,12 +225,6 @@ function showResult(name) {
     
     resultText.textContent = name;
     resultDisplay.classList.remove('hidden');
-}
-
-function resetWheel() {
-    document.getElementById('resultDisplay').classList.add('hidden');
-    const spinButton = document.getElementById('spinButton');
-    spinButton.disabled = false;
 }
 
 // Animation des feux d'artifice
